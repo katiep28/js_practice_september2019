@@ -159,7 +159,11 @@ let divisibleByFive = false;
 let value = 0;
 
 //check for 3 time table
+
+// could have used if n % 3 === 0
+// % returns the remainder when you divide by a number
 value = n/3;
+
 if (Number.isInteger(value)){
   divisibleByThree = true;
 }
@@ -178,6 +182,7 @@ if (divisibleByThree){
 if (divisibleByFive){
   return "buzz";
 }
+
 return n;
 
 }
