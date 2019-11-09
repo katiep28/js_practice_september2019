@@ -35,10 +35,6 @@ describe("count1sand0s", () => {
       0: 3
     });
 
-    expect(count1sand0s("0101010111")).toEqual({
-      1: 6,
-      0: 4
-    });
 
     expect(count1sand0s("1111111")).toEqual({
       1: 7,
