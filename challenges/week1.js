@@ -65,7 +65,6 @@ function getMiddleCharacter(str) {
   if (typeof str != "string") throw new Error("You must enter a string");
 
   const middleValue = str.length / 2;
-  console.log(middleValue);
   if (Number.isInteger(middleValue)){
     // even number of letters so need to return the //middle 2 letters. Index starts at 0
 

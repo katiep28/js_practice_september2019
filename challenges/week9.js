@@ -6,6 +6,7 @@
  */
 const sumMultiples = arr => {
   if (arr === undefined) throw new Error("arr is required");
+  if (!Array.isArray(arr)) throw new Error("arr is required")
 
   let total = 0;
 
@@ -24,6 +25,7 @@ const sumMultiples = arr => {
  */
 const isValidDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  if (typeof str != "string") throw new Error("str is required");
 
   const dnaArray = ["A", "C", "G", "T"];
   const upperString = str.toUpperCase();
@@ -37,9 +39,7 @@ const isValidDNA = str => {
       return isDNA;
     }
   });
-
   return isDNA;
-
 };
 
 
@@ -50,6 +50,7 @@ const isValidDNA = str => {
  */
 const getComplementaryDNA = str => {
   if (str === undefined) throw new Error("str is required");
+  if (typeof str != "string") throw new Error("str is required");
 
   const upperString = str.toUpperCase();
   const stringArray = upperString.split("");
@@ -75,7 +76,6 @@ const getComplementaryDNA = str => {
     }
   });
   return compArray.join("");
-
 };
 
 /**
@@ -84,20 +84,20 @@ const getComplementaryDNA = str => {
  * @returns {Boolean}
  */
 const isItPrime = n => {
-  if (n === undefined) throw new Error("n is required");
-  if (n < 2){
-    return false;
-  }
-  if (n === 2){
-    return true;
-  }
-  if (n % 2 === 0) {
-    return false;
-  }
-  for (let i = 3; i < n; i = i + 2) {
-    if (n % i === 0) {
-      return false;
-    }
+  if (n === undefined) throw new Error("number is required");
+  if (typeof n != "number") throw new Error ("number is required");
+
+  // 0 and 1 are not prime numbers. 2 is the first prime number
+
+  if (n < 2) return false;
+  
+  if (n === 2)  return true;
+  
+  if (n % 2 === 0) return false;
+  
+  for (let i=3; i< n; i=i+2) {
+    
+    if (n % i === 0) return false;
   }
   return true;
 };
@@ -114,8 +114,9 @@ const isItPrime = n => {
  * @returns {Array}
  */
 const createMatrix = (n, fill) => {
-  if (n === undefined) throw new Error("n is required");
+  if (n === undefined) throw new Error("number is required");
   if (fill === undefined) throw new Error("fill is required");
+  if (typeof n != "number") throw new Error("number is required")
 
   let masterArray = [];
 
@@ -131,7 +132,6 @@ const createMatrix = (n, fill) => {
     }
     masterArray.push(smallArray);
   }
-
   return masterArray;
 };
 
@@ -162,11 +162,14 @@ const createMatrix = (n, fill) => {
 const areWeCovered = (staff, day) => {
   if (staff === undefined) throw new Error("staff is required");
   if (day === undefined) throw new Error("day is required");
+  if (!Array.isArray(staff)) throw new Error("array is required")
+  
+  const daysOfWeek=["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+  if (daysOfWeek.indexOf(day) === -1) throw new Error ("a valid day of the week must be entered");
 
   let count = 0;
 
   staff.forEach(obj => {
-
     if (obj.rota.indexOf(day) !== -1) {
       count++;
     }

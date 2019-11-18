@@ -69,9 +69,7 @@ function duplicateNumbers(arr1, arr2) {
   let duplicateArray = [];
   let tempArray = [];
   // Put the array in order 
-  console.log(arr1);
   arr1.sort((a, b) => a - b);
-  console.log(arr1);
   //Remove duplicates
   
   for (let i=0; i< arr1.length; i++) {

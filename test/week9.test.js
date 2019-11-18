@@ -11,6 +11,8 @@ const {
 // of any numbers which are a multiple of 3 or 5
 describe("sumMultiples", () => {
   test("returns the total of all multiples of 3 or 5", () => {
+    expect(() => {sumMultiples()}).toThrow("arr is required");
+    expect(() => {sumMultiples("hello")}).toThrow("arr is required");
     expect(sumMultiples([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])).toBe(33);
     expect(sumMultiples([5, 3, 7, 8, 1, 10])).toBe(18);
     expect(sumMultiples([1, 2, 4, 7])).toBe(0);
@@ -26,6 +28,8 @@ describe("sumMultiples", () => {
 
 describe("isValidDNA", () => {
   test("Returne True if the string just contains C,G,T,A. Returns false it contains any other letter", () => {
+    expect(() => {isValidDNA()}).toThrow("str is required");
+    expect(() => {isValidDNA(5)}).toThrow("str is required");
     expect(isValidDNA("CGTA")).toEqual(true);
     expect(isValidDNA("cgta")).toEqual(true);
     expect(isValidDNA("CGTB")).toEqual(false);
@@ -40,18 +44,22 @@ describe("isValidDNA", () => {
 // In DNA, T always pairs with A, and C always pairs with G. 
 // So a string of "ACTG" would have a complementary DNA string of "TGAC".
 
-describe("rgetComplementaryDNA", () => {
+describe("getComplementaryDNA", () => {
   test("Return the complementary base DNA pair", () => {
+    expect(() => {getComplementaryDNA()}).toThrow("str is required");
+    expect(() => {getComplementaryDNA(5)}).toThrow("str is required");
     expect(getComplementaryDNA("ACTG")).toBe('TGAC');
     expect(getComplementaryDNA("actg")).toBe("TGAC");
     expect(getComplementaryDNA("AAA")).toBe("TTT");
     expect(getComplementaryDNA("G")).toBe("C");
-    expect(getComplementaryDNA("TGAC")).toBe("ACTG"); // No leading 0 necessary
+    expect(getComplementaryDNA("TGAC")).toBe("ACTG"); 
   });
 });
 
 describe("isItPrime", () => {
   test("Returns true if the number is a prime number", () => {
+    expect(() => {isItPrime()}).toThrow("number is required");
+    expect(() => {isItPrime("hello")}).toThrow("number is required");
     expect(isItPrime(0)).toBe(false);
     expect(isItPrime(1)).toBe(false);
     expect(isItPrime(2)).toBe(true);
@@ -70,6 +78,10 @@ describe("isItPrime", () => {
  
 describe("createMatrix", () => {
   test("returns an array of arrays depending on the number", () => {
+
+    expect(() => {createMatrix(undefined,"foo")}).toThrow("number is required");
+    expect(() => {createMatrix("foo","foo")}).toThrow("number is required");
+    expect(() => {createMatrix(1)}).toThrow("fill is required");
     expect(createMatrix(3, "foo")).toEqual([["foo", "foo","foo"],
                                              ["foo", "foo","foo"],
                                              ["foo", "foo","foo"]]);
@@ -78,6 +90,15 @@ describe("createMatrix", () => {
                                             ["xx", "xx","xx","xx","xx"],
                                             ["xx", "xx","xx","xx","xx"],
                                             ["xx", "xx","xx","xx","xx"]]);                                       
+    expect(createMatrix(3, 5)).toEqual([[5,5,5],
+                                       [5,5,5],
+                                       [5,5,5]]);
+    expect(createMatrix(3, ["a","b"])).toEqual([[["a","b"],["a","b"],["a","b"]],
+                                                 [["a","b"],["a","b"],["a","b"]],
+                                                 [["a","b"],["a","b"],["a","b"]]]);
+  expect(createMatrix(3, {a:"a",b:"b"})).toEqual([[{a:"a",b:"b"},{a:"a",b:"b"},{a:"a",b:"b"}],
+                                                 [{a:"a",b:"b"},{a:"a",b:"b"},{a:"a",b:"b"}],
+                                                 [{a:"a",b:"b"},{a:"a",b:"b"},{a:"a",b:"b"}]]);
     expect(createMatrix(0, "foo")).toEqual([]);
     expect(createMatrix(1, "xx")).toEqual(["xx"]);
   });
@@ -103,6 +124,11 @@ describe("areWeCovered", () => {
      { name: "Alice", rota: ["Wednesday"] },
      { name: "Pedro", rota: ["Saturday", "Sunday", "Tuesday", "Wednesday"] }
     ];
+
+    expect(() => {areWeCovered(undefined,"Wednesday")}).toThrow("staff is required");
+    expect(() => {areWeCovered(plan)}).toThrow("day is required");
+    expect(() => {areWeCovered("hello", "Wednesday")}).toThrow("array is required");
+    expect(() => {areWeCovered(plan, "Wed")}).toThrow("a valid day of the week must be entered");
     expect(areWeCovered(plan, "Monday")).toBe(false);
     expect(areWeCovered(plan, "Tuesday")).toBe(true);
     expect(areWeCovered(plan, "Wednesday")).toBe(true);
@@ -112,3 +138,6 @@ describe("areWeCovered", () => {
     expect(areWeCovered(plan, "Sunday")).toBe(true);
   });
 });
+
+//.toBe is used for checking primitive values, toEqual is used to check the contents
+//of an array or object.
